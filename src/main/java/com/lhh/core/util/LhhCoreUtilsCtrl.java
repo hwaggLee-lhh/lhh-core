@@ -1,6 +1,7 @@
 package com.lhh.core.util;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,6 +18,7 @@ import net.sf.json.JsonConfig;
 import net.sf.json.util.CycleDetectionStrategy;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -152,33 +154,6 @@ public class LhhCoreUtilsCtrl {
 	}
 
 	/**
-	 * json数据输出
-	 * @param totalProperty
-	 * @param jsonArray
-	 * @param res
-	 */
-	public static void putJSONArray(int totalProperty, JSONArray jsonArray,HttpServletResponse res) {
-		putJSONArray(totalProperty, jsonArray, res, null);
-	}
-
-	/**
-	 * json数据输出
-	 * @param totalProperty
-	 * @param jsonArray
-	 * @param res
-	 * @param map
-	 */
-	public static void putJSONArray(int totalProperty, JSONArray jsonArray,HttpServletResponse res, Map<String, Object> map) {
-		if (map == null) {
-			map = new HashMap<String, Object>(2);
-		}
-		map.put("total", "" + totalProperty);
-		map.put("rows", jsonArray);
-		putMapToJson(map, res);
-	}
-
-
-	/**
 	 * jsonp转换
 	 * @author hwaggLee
 	 * @createDate 2016年12月16日
@@ -252,6 +227,33 @@ public class LhhCoreUtilsCtrl {
 	public static void putJSON(JSONArray jsonArray, HttpServletResponse res) {
 		writeStr(jsonArray.toString(), res);
 	}
+
+	/**
+	 * json数据输出
+	 * @param totalProperty
+	 * @param jsonArray
+	 * @param res
+	 */
+	public static void putJSONArray(int totalProperty, JSONArray jsonArray,HttpServletResponse res) {
+		putJSONArray(totalProperty, jsonArray, res, null);
+	}
+
+	/**
+	 * json数据输出
+	 * @param totalProperty
+	 * @param jsonArray
+	 * @param res
+	 * @param map
+	 */
+	public static void putJSONArray(int totalProperty, JSONArray jsonArray,HttpServletResponse res, Map<String, Object> map) {
+		if (map == null) {
+			map = new HashMap<String, Object>(2);
+		}
+		map.put("total", "" + totalProperty);
+		map.put("rows", jsonArray);
+		putMapToJson(map, res);
+	}
+	
 
 	/**
 	 * 数据传递
@@ -364,5 +366,8 @@ public class LhhCoreUtilsCtrl {
 			return new ServletRequestDataBinder(t);
 		}
 	}
+	
+	
+	
 
 }
