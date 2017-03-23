@@ -3,5 +3,4 @@
 <beans default-autowire="byName" default-lazy-init="true">
     <import resource="classpath:xml/spring-core.xml"/> 
     <import resource="classpath:xml/spring-hibernate.xml"/> 
-    <import resource="classpath:xml/spring-component.xml"/> 
 </beans>

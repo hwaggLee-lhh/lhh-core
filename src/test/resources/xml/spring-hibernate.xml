@@ -24,42 +24,41 @@
 		<property name="jdbcUrl" value="${hibernate.connection.url}"/>
 		<property name="user" value="${hibernate.connection.username}"/>
 		<property name="password" value="${hibernate.connection.password}"/>
-		<property name="minPoolSize" value="1"/>
+		<property name="minPoolSize" value="${hibernate.minPoolSize}"/>
 		<!-- 达到最大连接数后可以增加的连接个数  -->
-		<property name="acquireIncrement" value="2"/>
-		<property name="maxPoolSize" value="3"/>
+		<property name="acquireIncrement" value="${hibernate.acquireIncrement}"/>
+		<property name="maxPoolSize" value="${hibernate.maxPoolSize}"/>
 		<!-- 最大闲置时间 秒 -->
-		<property name="maxIdleTime" value="600"/>
-		<property name="maxStatements" value="100"/>
+		<property name="maxIdleTime" value="${hibernate.maxIdleTime}"/>
+		<property name="maxStatements" value="${hibernate.maxStatements}"/>
 		<!-- 闲置的连接测试周期 秒 -->
-		<property name="idleConnectionTestPeriod" value="1200"/>
+		<property name="idleConnectionTestPeriod" value="${hibernate.idleConnectionTestPeriod}"/>
 	</bean>
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="com.lhh.*.*.model" />
+        <property name="packagesToScan" value="${hibernate.packagesToScan}" />
         <property name="mappingLocations">
             <list>
-                <value>classpath:xml/spring-core-hibernate-type.xml</value>
+                <value>${hibernate.mappingLocations_1}</value>
             </list>
         </property>
         <property name="hibernateProperties">
             <props>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<!-- 
-		    	<prop key="hibernate.hbm2ddl.auto">true</prop> 
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
-				 --> 
-				<prop key="hibernate.max_fetch_depth">1</prop>
-				<prop key="hibernate.jdbc.fetch_size">50</prop>
-				<prop key="hibernate.jdbc.batch_size">20</prop>
-				<prop key="hibernate.jdbc.use_scrollable_resultset">false</prop>
-				<prop key="hibernate.use_outer_join">true</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.format_sql">true</prop>
-				<prop key="hibernate.cache.use_query_cache">true</prop>
-				<prop key="hibernate.connection.pool_size">20</prop>
-				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
-				<prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</prop>
+				<!--
+		    	<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop> 
+				  -->
+				<prop key="hibernate.max_fetch_depth">${hibernate.max_fetch_depth}</prop>
+				<prop key="hibernate.jdbc.fetch_size">${hibernate.jdbc.fetch_size}</prop>
+				<prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+				<prop key="hibernate.jdbc.use_scrollable_resultset">${hibernate.jdbc.use_scrollable_resultset}</prop>
+				<prop key="hibernate.use_outer_join">${hibernate.use_outer_join}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.connection.pool_size">${hibernate.connection.pool_size}</prop>
+				<prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+				<prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
 			</props>
 		</property>
 	</bean>
